@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Slider</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #001f3f, #005f99);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .testimonial-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial {
+            min-width: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .stars {
+            color: gold;
+            font-size: 1.5em;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: white;
+        }
+        .prev { left: -300px; }
+        .next { right: -300px; }
+        .testimonial-form {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        input, textarea, button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: gold;
+            color: black;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #thank-you {
+            display: none;
+            margin-top: 20px;
+            background: #ffeb3b;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="testimonial-container">
+        <div class="testimonial-slider" id="testimonial-slider">
+            <div class="testimonial active">
+                <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\download (3).jpeg" alt="Hritik Kumar">
+                <h3>John Doe</h3>
+                <p>Great service and amazing experience!</p>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="testimonial">
+                <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\download (4).jpeg" alt="Alisha Ansari ">
+                <h3>Jane Smith</h3>
+                <p>Loved the quick response and support.</p>
+                <div class="stars">★★★★☆</div>
+            </div>
+            <div class="testimonial">
+                <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\download (5).jpeg" alt="Emily">
+                <h3>Emily Johnson</h3>
+                <p>Best auto service in town!</p>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    
+    <div class="testimonial-form">
+        <h3>Add Your Testimonial</h3>
+        <input type="text" id="name" placeholder="Your Name">
+        <textarea id="feedback" placeholder="Your Feedback"></textarea>
+        <input type="number" id="rating" min="1" max="5" placeholder="Rating (1-5)">
+        <button onclick="addTestimonial()">Submit</button>
+    </div>
+    
+    <div id="thank-you">Thanks for your time! Blink Auto appreciates it a lot.</div>
+    
+    <script>
+        let index = 0;
+        function showSlide(n) {
+            const slides = document.querySelectorAll(".testimonial");
+            if (n >= slides.length) index = 0;
+            if (n < 0) index = slides.length - 1;
+            document.querySelector(".testimonial-slider").style.transform = `translateX(${-index * 100}%)`;
+        }
+        function nextSlide() {
+            index++;
+            showSlide(index);
+        }
+        function prevSlide() {
+            index--;
+            showSlide(index);
+        }
+        function addTestimonial() {
+            const name = document.getElementById("name").value;
+            const feedback = document.getElementById("feedback").value;
+            const rating = document.getElementById("rating").value;
+            if (name && feedback && rating) {
+                const newTestimonial = document.createElement("div");
+                newTestimonial.classList.add("testimonial");
+                newTestimonial.innerHTML = `<img src='https://via.placeholder.com/100'><h3>${name}</h3><p>${feedback}</p><div class='stars'>${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>`;
+                document.getElementById("testimonial-slider").appendChild(newTestimonial);
+                document.getElementById("thank-you").style.display = "block";
+                setTimeout(() => { document.getElementById("thank-you").style.display = "none"; }, 3000);
+                
+                // Clear input fields after submission
+                document.getElementById("name").value = "";
+                document.getElementById("feedback").value = "";
+                document.getElementById("rating").value = "";
+            }
+        }
+        showSlide(index);
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blink Auto-Inventory</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, navy, darkblue);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            font-size: 24px;
+            background: rgba(0, 0, 50, 0.8);
+        }
+
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        #cart-count {
+            background: red;
+            border-radius: 50%;
+            padding: 5px 10px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        /* Countdown Timer */
+        .timer {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        /* Product Cards */
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            color: black;
+            padding: 15px;
+            width: 220px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            background: navy;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
+
+        /* Quantity Controls */
+        .quantity {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .minus, .plus {
+            background: darkblue;
+            padding: 5px 10px;
+        }
+
+        /* Image Gallery */
+        .gallery {
+            margin-top: 30px;
+        }
+
+        .filters {
+            margin-bottom: 10px;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-container img {
+            width: 150px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-container img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Cart -->
+    <header>
+        <h1>Blink Auto 🛒 </h1>
+        <div class="cart">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Countdown Timer -->
+    <section class="timer">
+        <h2>🎊Sale Ends In!🎊</h2>
+        <div id="countdown"></div>
+    </section>
+
+    <!-- Product Section -->
+  <section class="products">
+    <!-- Engine Oil -->
+    <div class="product-card" data-id="1">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\1.jpeg" alt="Engine Oil">
+        <h3>Engine Oil</h3>
+        <p>💸 1700 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- Car Tyre -->
+    <div class="product-card" data-id="2">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\2.jpg" alt="Car Tyre">
+        <h3>Car Tyre</h3>
+        <p>💸 4500 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- Brake Pads -->
+    <div class="product-card" data-id="3">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\car-brake-pads.jpg" alt="Brake Pads">
+        <h3>Brake Pads</h3>
+        <p>💸 800 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- New Product: Car Battery -->
+    <div class="product-card" data-id="4">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\car-battery.jpg" alt="Car Battery">
+        <h3>Car Battery</h3>
+        <p>💸 6200 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- New Product: Headlights -->
+    <div class="product-card" data-id="5">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\car-headlight.jpg" alt="Headlights">
+        <h3>Headlights</h3>
+        <p>💸 2500 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- New Product: Air Filter -->
+    <div class="product-card" data-id="6">
+        <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\car-air-filter.jpg" alt="Air Filter">
+        <h3>Air Filter</h3>
+        <p>💸 900 Rs</p>
+        <div class="quantity">
+            <button class="minus">-</button>
+            <span class="qty">1</span>
+            <button class="plus">+</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</section>
+
+
+    <!-- Image Gallery -->
+    <section class="gallery">
+        <h2>Product Gallery</h2>
+        <div class="filters">
+            <button class="filter-btn" data-category="all">All</button>
+            <button class="filter-btn" data-category="engine">Engine</button>
+            <button class="filter-btn" data-category="wheels">Wheels</button>
+        </div>
+        <div class="gallery-container">
+            <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\images.png" data-category="engine">
+            <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\J601-Car-Parts-Accessories-Tires-Wheel-Hubs-For-Car-Modification.png" data-category="wheels">
+            <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\eng.png" data-category="engine">
+            <img src="C:\Users\Admin\Desktop\General\Numtery task\Images\kitwebsitecopy_large.png" data-category="wheels">
+        </div>
+    </section>
+
+    <script>
+     
+        function startCountdown() {
+            let timeLeft = 3600;
+            const countdown = document.getElementById("countdown");
+
+            function updateTimer() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                countdown.textContent = `${minutes}m ${seconds}s`;
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    timeLeft = 3600;
+                    updateTimer();
+                }
+            }
+            updateTimer();
+        }
+        startCountdown();
+
+
+        let cartCount = 0;
+        document.querySelectorAll(".add-to-cart").forEach((button) => {
+            button.addEventListener("click", function () {
+                cartCount++;
+                document.getElementById("cart-count").textContent = cartCount;
+            });
+        });
+
+
+        document.querySelectorAll(".quantity").forEach((control) => {
+            let qty = control.querySelector(".qty");
+            control.querySelector(".plus").addEventListener("click", () => {
+                qty.textContent = parseInt(qty.textContent) + 1;
+            });
+            control.querySelector(".minus").addEventListener("click", () => {
+                if (parseInt(qty.textContent) > 1) {
+                    qty.textContent = parseInt(qty.textContent) - 1;
+                }
+            });
+        });
+
+
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                let category = btn.getAttribute("data-category");
+                document.querySelectorAll(".gallery-container img").forEach((img) => {
+                    img.style.display = category === "all" || img.getAttribute("data-category") === category ? "block" : "none";
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

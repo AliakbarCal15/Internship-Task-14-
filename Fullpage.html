@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blink Auto - Premium Car Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+	
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #ff4d4d;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4d4d;
+        }
+
+        /* Sections */
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-image: linear-gradient(rgba(3,8,5,4.5), rgba(8,0,0,0.5)), url('/api/placeholder/1920/1080');
+        }
+
+        /* Services Cards */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Testimonials */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(45deg, #1a1a1a, #333);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+        }
+
+        button {
+            background: #ff4d4d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ff3333;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    
+    <nav>
+        <a href="#hero"></a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="hero">
+        <h1 data-aos="fade-up" style="font-size: 4rem; margin-bottom: 20px;">BLINK AUTO</h1>
+        <p data-aos="fade-up" data-aos-delay="200" style="font-size: 1.5rem;">Experience Premium Car Services</p>
+    </section>
+
+    <section id="services" style="background: linear-gradient(45deg, #2c3e50, #3498db);">
+        <h2 data-aos="fade-up" style="margin-bottom: 50px; font-size: 2.5rem;">Our Services</h2>
+        <div class="services-container">
+            <div class="service-card" data-aos="fade-up">
+                <h3>Premium Detailing</h3>
+                <p>Professional car detailing services to keep your vehicle looking its best.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Performance Tuning</h3>
+                <p>Optimize your vehicle's performance with our expert tuning services.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Maintenance</h3>
+                <p>Regular maintenance and servicing to ensure your car runs smoothly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" style="background: linear-gradient(45deg, #2c3e50, #e74c3c);">
+        <h2 data-aos="fade-up" style="margin-bottom: 50px; font-size: 2.5rem;">What Our Clients Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <p>"Best car service I've ever experienced. Professional and efficient!"</p>
+                <h4>- John Doe</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 data-aos="fade-up" style="margin-bottom: 50px; font-size: 2.5rem;">Contact Us</h2>
+        <div class="contact-form" data-aos="fade-up">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Message" rows="5"></textarea>
+            <button>Send Message</button>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
+        // Simple testimonial slider
+        let currentTestimonial = 0;
+        const testimonials = [
+            {
+                text: "Best car service I've ever experienced. Professional and efficient!",
+                author: "John Doe"
+            },
+            {
+                text: "Outstanding attention to detail. My car looks brand new!",
+                author: "Jane Smith"
+            },
+            {
+                text: "Excellent customer service and exceptional results.",
+                author: "Mike Johnson"
+            }
+        ];
+
+        function updateTestimonial() {
+            const testimonialDiv = document.querySelector('.testimonial');
+            testimonialDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+                testimonialDiv.innerHTML = `
+                    <p>"${testimonials[currentTestimonial].text}"</p>
+                    <h4>- ${testimonials[currentTestimonial].author}</h4>
+                `;
+                testimonialDiv.style.opacity = '1';
+                
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            }, 500);
+        }
+
+        setInterval(updateTestimonial, 5000);
+    </script>
+</body>
+</html>

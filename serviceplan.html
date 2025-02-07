@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Table & FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+        .dark-mode .card {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        .theme-toggle {
+            display: flex;
+            align-items: bottom right;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            width: 60px;
+            padding: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .theme-toggle .slider {
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        .dark-mode .theme-toggle {
+            background-color: #4a5568;
+        }
+        .dark-mode .slider {
+            transform: translateX(30px);
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-4">
+        <div id="themeToggle" class="theme-toggle">
+            <span class="slider"></span>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <h2>Pricing Plans</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h3>Basic</h3>
+                    <p>$10/month</p>
+                    <button class="btn btn-primary">Choose Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h3>Standard</h3>
+                    <p>$20/month</p>
+                    <button class="btn btn-primary">Choose Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h3>Premium</h3>
+                    <p>$30/month</p>
+                    <button class="btn btn-primary">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2>FAQ</h2>
+        <div class="space-y-4">
+            <div class="border border-gray-300 rounded-lg p-4 accordion-item">
+                <button class="w-full text-left font-semibold accordion-header">What is included in the Basic plan?</button>
+                <div class="accordion-content">
+                    <p class="p-2">The Basic plan includes essential features for individuals.</p>
+                </div>
+            </div>
+            <div class="border border-gray-300 rounded-lg p-4 accordion-item">
+                <button class="w-full text-left font-semibold accordion-header">Can I upgrade later?</button>
+                <div class="accordion-content">
+                    <p class="p-2">Yes, you can upgrade anytime from your account settings.</p>
+                </div>
+            </div>
+            <div class="border border-gray-300 rounded-lg p-4 accordion-item">
+                <button class="w-full text-left font-semibold accordion-header">Do you offer refunds?</button>
+                <div class="accordion-content">
+                    <p class="p-2">We offer a 7-day refund policy for all plans.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleButton = document.getElementById("themeToggle");
+            const body = document.body;
+            
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
+            }
+            
+            toggleButton.addEventListener("click", function() {
+                body.classList.toggle("dark-mode");
+                localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            });
+
+            document.querySelectorAll(".accordion-header").forEach(button => {
+                button.addEventListener("click", function() {
+                    const item = this.parentElement;
+                    item.classList.toggle("active");
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+</body>
+</html>
